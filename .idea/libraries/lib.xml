@@ -1,0 +1,18 @@
+<component name="libraryTable">
+  <library name="lib">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/lib/javacpp-1.4.1.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <NATIVE>
+      <root url="file://$USER_HOME$/Downloads/opencv/build/java/x64" />
+    </NATIVE>
+    <SOURCES>
+      <root url="jar://$USER_HOME$/Downloads/opencv/build/java/opencv-341.jar!/" />
+      <root url="jar://$USER_HOME$/Downloads/jfreechart-1.0.19.zip!/jfreechart-1.0.19/experimental" />
+      <root url="jar://$USER_HOME$/Downloads/jfreechart-1.0.19.zip!/jfreechart-1.0.19/source" />
+      <root url="jar://$USER_HOME$/Downloads/jfreechart-1.0.19.zip!/jfreechart-1.0.19/swt" />
+      <root url="jar://$USER_HOME$/Downloads/jfreechart-1.0.19.zip!/jfreechart-1.0.19/tests" />
+    </SOURCES>
+  </library>
+</component>
