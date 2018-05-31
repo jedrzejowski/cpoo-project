@@ -1,26 +1,22 @@
 package adam.monika.adam;
 
 
-import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
-import java.awt.Graphics;
 import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
 
 /**
  *Tworzy histogram obrazu.
  */
 public class Histogram extends JPanel {
-    private int[] Arr;
+
     private int[] values;
     private String[] names;
     private String title;
     private int[] tab = new int[]{0,255};
-    private BufferedImage img = null;
+    //private BufferedImage img = null;
 
-    public Histogram(String title, File file) {
+    public Histogram(String title, BufferedImage img) {
         this.names = new String[tab[1]+1];
         this.values = new int[tab[1]+1];
         this.title=title;
@@ -28,26 +24,19 @@ public class Histogram extends JPanel {
             names[i] =  String.valueOf(i);
         }
 
-        //read image
-        try{
-            img = ImageIO.read(file);
-        }catch(IOException e){
-            System.out.println(e);
-        }
-
-        getValues(img);
+        values = Calculate.getValues(img);
     }
-    private void getValues(BufferedImage img) {
+/*    private void getValues(BufferedImage img) {
         int width = img.getWidth();
         int height = img.getHeight();
-
+        int[] Arr;
         Arr =img.getRGB(0,0,width,height,null, 0b0,width);
 
         for(int i = 0; i< Arr.length; i++){
             int a = ((int) Arr[i]& 0xFF);
             values[a]++;
         }
-    }
+    }*/
 
     /**
      * Metoda odpowiada za przedstawienie histogramu w formie graficznej
