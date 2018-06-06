@@ -1,5 +1,5 @@
 <component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="Main" type="Application" factoryName="Application" singleton="true">
+  <configuration default="false" name="CPOO" type="Application" factoryName="Application" singleton="true">
     <option name="MAIN_CLASS_NAME" value="adam.monika.adam.Main" />
     <module name="cpoo-projrct" />
     <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
