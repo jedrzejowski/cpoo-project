@@ -50,7 +50,7 @@ public class FrameUI extends Stage {
         }
 
         NumberAxis xAxis = new NumberAxis(-10, 265, 32);
-        LogarithmicAxis yAxis = new LogarithmicAxis(1, max);
+        LogarithmicAxis yAxis = new LogarithmicAxis(1, max * 1.1);
         chart = new AreaChart<>(xAxis, yAxis);
         chart.setTitle("Histogram");
 
@@ -60,6 +60,8 @@ public class FrameUI extends Stage {
         series2.setName("Unormowany");
 
         chart.getData().addAll(series1, series2);
+
+        chart.setCreateSymbols(false);
 
         GridPane.setColumnIndex(chart, 1);
         GridPane.setRowIndex(chart, 0);
