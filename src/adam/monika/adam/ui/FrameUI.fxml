@@ -5,29 +5,32 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<GridPane prefHeight="600.0" prefWidth="600.0"
+<GridPane prefHeight="300" prefWidth="1050.0"
           xmlns="http://javafx.com/javafx/8.0.121"
           xmlns:fx="http://javafx.com/fxml/1">
 
     <columnConstraints>
-        <ColumnConstraints/>
-        <ColumnConstraints/>
+        <ColumnConstraints />
+        <ColumnConstraints prefWidth="750"/>
     </columnConstraints>
 
     <rowConstraints>
-        <RowConstraints/>
-        <RowConstraints/>
+        <RowConstraints prefHeight="300"/>
+        <RowConstraints prefHeight="300"/>
     </rowConstraints>
 
     <children>
-        <ImageView id="image1" GridPane.columnIndex="0" GridPane.rowIndex="0"
-                   pickOnBounds="true"/>
-        <ImageView id="image2" GridPane.columnIndex="1" GridPane.rowIndex="0"
-                   pickOnBounds="true"/>
-        <ImageView id="image3" GridPane.columnIndex="0" GridPane.rowIndex="1"
-                   pickOnBounds="true"/>
-        <ImageView id="image4" GridPane.columnIndex="1" GridPane.rowIndex="1"
-                   pickOnBounds="true"/>
+        <ImageView id="image1" GridPane.columnIndex="0"
+                   GridPane.rowIndex="0"
+                   fitHeight="300"
+                   fitWidth="300" />
+
+
+        <ImageView id="image2" GridPane.columnIndex="0"
+                   GridPane.rowIndex="1"
+                   fitHeight="300"
+                   fitWidth="300" />
+
     </children>
 
 
