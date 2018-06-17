@@ -1,7 +1,7 @@
 <component name="libraryTable">
   <library name="jfxchartext-1.1">
     <CLASSES>
-      <root url="jar://$USER_HOME$/Pobrane/jfxchartext-1.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/jfxchartext-1.1.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />
