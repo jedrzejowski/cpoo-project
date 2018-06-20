@@ -46,6 +46,37 @@ public class Histogram {
         return histogram;
     }
 
+    private static int getPixelOfImage(BufferedImage image, int x, int y) {
+        int width = image.getWidth(), height = image.getHeight();
+
+        int times;
+
+        times = x / width;
+        x = x - width * times;
+        if (x < 0) x *= -1;
+//        if (times % 2 == 1) x = width - x;
+
+        times = y / height;
+        y = y - height * times;
+        if (y < 0) y *= -1;
+//        if (times % 2 == 1) y = height - y;
+
+        return image.getRaster().getSample(x, y, 0);
+    }
+
+    public static int[] getHistogramPixel(BufferedImage image, int x, int y, int delta) {
+        int[] histogram = new int[256];
+
+        for (int ix = x - delta; ix < x + delta; ix++) {
+            for (int iy = y - delta; iy < y + delta; iy++) {
+                int pixel = getPixelOfImage(image, ix, iy);
+                histogram[pixel]++;
+            }
+        }
+
+        return histogram;
+    }
+
     public static int[] equalize(int[] histogram, int hTw) {
         float temp;
 
@@ -65,15 +96,15 @@ public class Histogram {
     }
 
     public static BufferedImage lutToImage(BufferedImage oldImage, int[] lut) {
+        int width = oldImage.getWidth(), height = oldImage.getHeight();
+
         BufferedImage newImage = new BufferedImage(
-                oldImage.getWidth(),
-                oldImage.getHeight(),
+                width, height,
                 BufferedImage.TYPE_BYTE_GRAY);
 
         WritableRaster oldRaster = oldImage.getRaster(),
                 newRaster = newImage.getRaster();
 
-        int width = newImage.getWidth(), height = newImage.getHeight();
 
         for (int x = 0; x < width; x++) {
             for (int y = 0; y < height; y++) {
@@ -83,6 +114,32 @@ public class Histogram {
         }
 
         newImage.setData(newRaster);
+
+        return newImage;
+    }
+
+    public static BufferedImage localEqualizeHistogram(BufferedImage oldImage, int delta) {
+        int width = oldImage.getWidth(), height = oldImage.getHeight();
+
+        BufferedImage newImage = new BufferedImage(
+                width, height,
+                BufferedImage.TYPE_BYTE_GRAY);
+
+        WritableRaster oldRaster = oldImage.getRaster(),
+                newRaster = newImage.getRaster();
+
+        int[] histogram, lut;
+        int pixel;
+
+        for (int x = 0; x < width; x++) {
+            for (int y = 0; y < height; y++) {
+                histogram = getHistogramPixel(oldImage, x, y, delta);
+                lut = equalize(histogram, height * width);
+
+                pixel = lut[oldRaster.getSample(x, y, 0)];
+                newRaster.setSample(x, y, 0, pixel);
+            }
+        }
 
         return newImage;
     }

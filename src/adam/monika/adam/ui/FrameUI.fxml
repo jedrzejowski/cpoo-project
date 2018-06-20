@@ -1,17 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<GridPane prefHeight="300" prefWidth="1050.0"
-          xmlns="http://javafx.com/javafx/8.0.121"
+<?import javafx.scene.layout.Pane?>
+<GridPane prefWidth="1200.0" xmlns="http://javafx.com/javafx/8.0.121"
           xmlns:fx="http://javafx.com/fxml/1">
 
     <columnConstraints>
-        <ColumnConstraints />
-        <ColumnConstraints prefWidth="750"/>
+        <ColumnConstraints prefWidth="300"/>
+        <ColumnConstraints prefWidth="300"/>
+        <ColumnConstraints prefWidth="600"/>
     </columnConstraints>
 
     <rowConstraints>
@@ -20,16 +22,17 @@
     </rowConstraints>
 
     <children>
-        <ImageView id="image1" GridPane.columnIndex="0"
-                   GridPane.rowIndex="0"
-                   fitHeight="300"
-                   fitWidth="300" />
+        <ImageView id="image1" fitHeight="300" fitWidth="300"
+                   GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+
+        <ImageView id="image2" fitHeight="300" fitWidth="300"
+                   GridPane.columnIndex="0" GridPane.rowIndex="1"/>
 
 
-        <ImageView id="image2" GridPane.columnIndex="0"
-                   GridPane.rowIndex="1"
-                   fitHeight="300"
-                   fitWidth="300" />
+        <ImageView id="image3" fitHeight="300" fitWidth="300"
+                   GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+        
+        <Label id="label" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
 
     </children>
 
