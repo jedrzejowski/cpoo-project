@@ -23,11 +23,11 @@ public class Main extends Application {
 
         File inputFolder = new File("pic/input");
         File[] listOfImages = inputFolder.listFiles();
-        BufferedImage img = null;
+        BufferedImage img;
 
         //read image
         try {
-            img = ImageIO.read(listOfImages[0]);
+            img = ImageIO.read(listOfImages[1]);
 
             new FrameUI(img);
         } catch (IOException e) {
