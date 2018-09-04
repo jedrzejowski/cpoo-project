@@ -37,6 +37,17 @@ public class FrameUI extends Stage {
         int[] histogram1 = Histogram.getHistogram(image1);
         imageView1.setImage(SwingFXUtils.toFXImage(image1, null));
 
+        int licznik;
+        int suma = 0;
+        for (licznik = 0; licznik < histogram1.length; licznik++){
+        System.out.println(licznik + " " + histogram1[licznik] + '\n');
+        suma = suma + histogram1[licznik];}
+
+        System.out.println("Suma wynosi:" + suma);
+        System.out.println("Ilość elementów wynosi:" + image1.getHeight() * image1.getWidth());
+        System.out.println("Wysokość wynosi:" + image1.getHeight());
+        System.out.println("Szerokość wynosi:" + image1.getWidth());
+
         int[] lut = Histogram.equalize(histogram1, image1.getHeight() * image1.getWidth());
         BufferedImage image2 = Histogram.lutToImage(image1, lut);
 
@@ -90,12 +101,12 @@ public class FrameUI extends Stage {
                 " - Monika Dwojak\n" +
                 "\n" +
                 "Program przedstawia dwie różne\nmożliwości unormowania histogramu\n" +
-                "globalną(lewo dół) i lokalną(prawo dół)" +
+                "globalną(lewo dół) i lokalną (prawo dół)" +
                 "\n");
 
 
         initModality(Modality.APPLICATION_MODAL);
-        setTitle("Tytuł");
+        setTitle("Porównanie metod wyrównania histogramu");
         setScene(new Scene(root));
         show();
         
