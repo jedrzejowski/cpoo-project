@@ -1,8 +1,6 @@
 package adam.monika.adam.calc;
 
 import javafx.collections.ObservableList;
-import javafx.scene.chart.AreaChart;
-import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
 
 import java.awt.image.BufferedImage;
@@ -49,27 +47,24 @@ public class Histogram {
     private static int getPixelOfImage(BufferedImage image, int x, int y) {
         int width = image.getWidth(), height = image.getHeight();
 
-        int times;
-
-        times = x / width;
-        x = x - width * times;
-        if (x < 0) x *= -1;
-//        if (times % 2 == 1) x = width - x;
-
-        times = y / height;
-        y = y - height * times;
-        if (y < 0) y *= -1;
-//        if (times % 2 == 1) y = height - y;
+        if (x < 0 || x >= width || y < 0 || y >= height)
+            return -1;
 
         return image.getRaster().getSample(x, y, 0);
     }
 
     public static int[] getHistogramPixel(BufferedImage image, int x, int y, int delta) {
+        int xmax = Math.min(image.getWidth(), x + delta),
+                ymax = Math.min(image.getHeight(), y + delta);
+
         int[] histogram = new int[256];
 
-        for (int ix = x - delta; ix < x + delta; ix++) {
-            for (int iy = y - delta; iy < y + delta; iy++) {
+        for (int ix = Math.max(x - delta, 0); ix < xmax; ix++) {
+            for (int iy = Math.max(y - delta, 0); iy < ymax; iy++) {
                 int pixel = getPixelOfImage(image, ix, iy);
+
+                if (pixel == -1) continue;
+
                 histogram[pixel]++;
             }
         }
@@ -77,6 +72,12 @@ public class Histogram {
         return histogram;
     }
 
+    /**
+     * 
+     * @param histogram hiostogram
+     * @param hTw obszar obrazka !!!!!!!
+     * @return tablica lut
+     */
     public static int[] equalize(int[] histogram, int hTw) {
         float temp;
 
@@ -129,13 +130,20 @@ public class Histogram {
                 newRaster = newImage.getRaster();
 
         int[] histogram, lut;
-        int pixel;
+        int pixel, localHeight, localWidth;
 
         for (int x = 0; x < width; x++) {
             for (int y = 0; y < height; y++) {
                 histogram = getHistogramPixel(oldImage, x, y, delta);
-                lut = equalize(histogram, height * width);
 
+                localWidth = Math.min(x + delta, width) - Math.max(x - delta, 0);
+                localHeight = Math.min(y + delta, height) - Math.max(y - delta, 0);
+
+                lut = equalize(histogram, localHeight * localWidth);
+
+//                if (x == 0 && y == 0) for (int i : lut)
+//                    System.out.print(i + ",");
+                
                 pixel = lut[oldRaster.getSample(x, y, 0)];
                 newRaster.setSample(x, y, 0, pixel);
             }

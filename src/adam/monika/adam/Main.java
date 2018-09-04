@@ -27,7 +27,7 @@ public class Main extends Application {
 
         //read image
         try {
-            img = ImageIO.read(listOfImages[0]);
+            img = ImageIO.read(listOfImages[3]);
 
             new FrameUI(img);
         } catch (IOException e) {

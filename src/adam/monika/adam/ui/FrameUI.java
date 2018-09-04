@@ -47,7 +47,7 @@ public class FrameUI extends Stage {
 
         //Histogram lokalny
 
-        BufferedImage image3 = Histogram.localEqualizeHistogram(image1, 32);
+        BufferedImage image3 = Histogram.localEqualizeHistogram(image1, 16);
         int[] histogram3 = Histogram.getHistogram(image3);
         imageView3.setImage(SwingFXUtils.toFXImage(image3, null));
 
@@ -98,5 +98,7 @@ public class FrameUI extends Stage {
         setTitle("Tytuł");
         setScene(new Scene(root));
         show();
+        
+        //Zapisanie obrazów
     }
 }
